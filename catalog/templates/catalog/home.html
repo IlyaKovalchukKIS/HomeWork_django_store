@@ -3,7 +3,30 @@
 {% block content %}
 <div class="row">
     {% for object in object_list %}
-    {% include 'catalog/includes/inc_products.html' %}
+    <div class="col-4">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">{{ object.name }}</h4>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title pricing-card-title">{{ object.price }} руб</h2>
+                <p>{{ object.description }}</p>
+                <p>{{ object.preview }}</p>
+                <div>
+                    <p>
+                        <button type="button" class="h-100 btn btn-lg btn-secondary text-grey">Посмотреть товар
+                        </button>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <button type="button" class="h-100 btn btn-lg btn-success text-white">Купить
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
