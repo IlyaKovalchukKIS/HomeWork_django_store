@@ -1,7 +1,9 @@
+from datetime import datetime
+
 from django.shortcuts import render
 
 from catalog.models import Product, Category
-
+from catalog.forms import ProductForm
 
 # Create your views here.
 
@@ -40,3 +42,20 @@ def category_product(request, pk):
         'description': category_item.description[:100]
     }
     return render(request, 'catalog/category_product.html', context)
+
+
+def create_product(request):
+    context = {
+        'object_list': Category.objects.all()
+    }
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'catalog/create_product.html', context)  # Перенаправьте на нужную страницу после сохранения
+    else:
+        form = ProductForm()
+        return render(request, 'catalog/create_product.html', {'form': form})
+
+
+
